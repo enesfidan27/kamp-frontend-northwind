@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
+import { Product } from 'src/app/models/product';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
@@ -13,9 +14,9 @@ export class CategoryComponent implements OnInit {
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.getCategories();
   }
-  getProducts() {
+  getCategories() {
     this.categoryService.getCategories().subscribe(response=>{
       this.categories=response.data
     })
@@ -23,9 +24,18 @@ export class CategoryComponent implements OnInit {
   setCurrentCategory(category:Category){
     this.currentCategory = category;
   }
+ 
   getCurrentCategoryClass(category:Category){
     if(category ==this.currentCategory){
       return "list-group-item active"    
+    }
+    else{
+      return "list-group item"
+    }
+  }
+  getAllCategoryClass(){
+    if(!this.currentCategory){
+      return "list-group-item active"
     }
     else{
       return "list-group item"
