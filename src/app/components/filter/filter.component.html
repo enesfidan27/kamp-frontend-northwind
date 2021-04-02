@@ -1,0 +1,9 @@
+<select class="form-select" aria-label="Default select example">
+    <option selected>Marka Seçiniz</option>
+    <option (click)="setCurrentBrand(brand)"*ngFor="let brand of brands">{{brand.brandName}}</option>
+  </select>
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Renk Seçiniz</option>
+    <option (click)="setCurrentColor(color)"*ngFor="let color of colors">{{color.colorName}}</option>
+  </select>
+  <button (click)="getFilteredDetails()"routerLink="" type="button" class="btn btn-primary">Filtrele</button>

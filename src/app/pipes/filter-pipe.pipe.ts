@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Product } from '../models/product';
+import { Brand } from '../models/brand';
+import { Car } from '../models/car';
 
 @Pipe({
   name: 'filterPipe'
 })
 export class FilterPipePipe implements PipeTransform {
-//dnüşüme uğramasını istediğim data Product[],gireceğim şey filterText:string
-//biz bir Product[] vericez parametreye göre onu filtreliyecez dönüşünde yeni filtrelenmiş yeni bir Product[] alıcaz
-  transform(value: Product[], filterText: string): Product[] {
-    filterText = filterText?filterText.toLocaleLowerCase():""
-    return filterText?value.filter((p:Product)=>p.productName.toLocaleLowerCase().indexOf(filterText)!==-1)
-    :value;
-  }
 
+  transform(value: Car[], filterTextA: string): Car[] {
+    filterTextA = filterTextA?filterTextA.toLocaleLowerCase():""
+    return filterTextA?value.filter((c:Car)=>c.carDescription.toLocaleLowerCase().indexOf(filterTextA)!==-1):value
+
+  }
+ 
 }

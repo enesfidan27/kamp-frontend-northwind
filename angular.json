@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "northwind": {
+    "recap": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/northwind",
+            "outputPath": "dist/recap",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,12 +28,15 @@
               "src/assets"
             ],
             "styles": [
+             
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-toastr/toastr.css",
-              "src/styles.css"             
+              "src/styles.css"
             ],
-            "scripts": ["./node_modules/jquery/dist/jquery.min.js",
-               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",          
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -69,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "northwind:build"
+            "browserTarget": "recap:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "northwind:build:production"
+              "browserTarget": "recap:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "northwind:build"
+            "browserTarget": "recap:build"
           }
         },
         "test": {
@@ -117,16 +120,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "northwind:serve"
+            "devServerTarget": "recap:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "northwind:serve:production"
+              "devServerTarget": "recap:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "northwind"
+  "defaultProject": "recap"
 }

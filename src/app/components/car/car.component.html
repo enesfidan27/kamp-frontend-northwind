@@ -1,0 +1,79 @@
+<div class="mb-3">
+    <label for="filterTextA" class="form-label">Araba ara</label>
+    <input type="text" [(ngModel)]="filterTextA" class="form-control" id="filterTextA" placeholder="örn;tesla model s">
+  </div>
+  <div *ngIf="filterTextA.length>2"class="alert alert-success">
+  {{filterTextA}} aradınız.
+  </div>
+
+  <select 
+  #selectBrand
+  (change)="setCurrentBrand(selectBrand.value)"
+  class="form-select"
+  aria-label=".form-select-lg example"
+>
+  <option selected value="0">Marka Seçiniz</option>
+  <option *ngFor="let brand of brands" [value]="brand.brandId">
+    {{ brand.brandName }}
+  </option>
+</select>
+<select 
+  #selectColor
+  (change)="setCurrentColor(selectColor.value)"
+  class="form-select"
+  aria-label=".form-select-lg example"
+>
+  <option selected value="0">Renk Seçiniz</option>
+  <option *ngFor="let color of colors" [value]="color.colorId">
+    {{ color.colorName }}
+  </option>
+</select>
+
+<button (click)="getCarDetailsFiltered()"
+    type="button" class="btn btn-primary">Filtrele</button>
+
+  <!-- <select class="form-select" aria-label="Default select example">
+    <option selected>Marka Seçiniz</option>
+    <option (click)="setCurrentBrand(brand)"*ngFor="let brand of brands">{{brand.brandName}}</option>
+  </select>
+  <select class="form-select" aria-label="Default select example">
+    <option selected>Renk Seçiniz</option>
+    <option (click)="setCurrentColor(color)"*ngFor="let color of colors">{{color.colorName}}</option>
+  </select> -->
+  
+
+<h2 class="text-center">Araba Listesi</h2>
+<div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+    <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    
+</div>
+<table *ngIf="dataLoaded==true" class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th>Araba Numarası</th>
+            <th>Marka</th>
+            <th>Renk</th>
+            <th>Model</th>
+            <th>Günlük Kirası</th>
+            <th>Açıklama</th>
+            <th></th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let car of cars | filterPipe:filterTextA">
+        <td>{{car.carId}}</td>
+        <td>{{car.brandName}}</td>
+        <td>{{car.colorName}}</td>
+        <td>{{car.carModelYear}}</td>
+        <td>{{car.carDailyPrice |currency:"₺"}}</td>
+        <td>{{car.carDescription}}</td>
+        <td><button routerLink="/cars/cardetail/{{car.carId}}" class="btn-btn-outline-success">Detaya Git</button></td>
+      
+    </tr>
+    </tbody>
+   
+</table>
